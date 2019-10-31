@@ -38,19 +38,32 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let nav = document.querySelectorAll('nav a');
-nav[0].textContent            = siteContent['nav']['nav-item-1'];
-nav[1].textContent            = siteContent['nav']['nav-item-2'];
-nav[2].textContent            = siteContent['nav']['nav-item-3'];
-nav[3].textContent            = siteContent['nav']['nav-item-4'];
-nav[4].textContent            = siteContent['nav']['nav-item-5'];
-nav[5].textContent            = siteContent['nav']['nav-item-6'];
+let nav                       = document.querySelector('nav');
+let navLink                   = nav.querySelectorAll('a');
+navLink[0].textContent        = siteContent['nav']['nav-item-1'];
+navLink[1].textContent        = siteContent['nav']['nav-item-2'];
+navLink[2].textContent        = siteContent['nav']['nav-item-3'];
+navLink[3].textContent        = siteContent['nav']['nav-item-4'];
+navLink[4].textContent        = siteContent['nav']['nav-item-5'];
+navLink[5].textContent        = siteContent['nav']['nav-item-6'];
+Array.from(navLink).forEach(link => link.style.color = 'green');
+let navFirstChild             = document.createElement('a');
+navFirstChild.textContent     = 'Home';
+navFirstChild.href            = '#';
+navFirstChild.style.color     = 'green';
+nav.prepend(navFirstChild);
+let navLastChild              = document.createElement('a');
+navLastChild.textContent      = 'Last';
+navLastChild.href             = '#';
+navLastChild.style.color       = 'green';
+nav.appendChild(navLastChild);
 
 let logo                      = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
 let ctaInfo                   = document.querySelector('.cta .cta-text h1');
-ctaInfo.textContent           = siteContent['cta']['h1'].replace(/\xA0/g, "<br>");
+ctaInfo.innerText            = siteContent['cta']['h1'].replace(/ /g, '\n');
+ctaInfo.style.width           = '241px';
 let ctaButton                 = document.querySelector('.cta .cta-text button');
 ctaButton.textContent         = siteContent['cta']['button'];
 let ctaImg = document.getElementById("cta-img");
